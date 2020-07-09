@@ -12,7 +12,12 @@ Sneaker.destroy_all
 
 andrew = User.create(
     username: 'Andrew',
-    password_digest: 'something'
+    password: 'something'
+)
+
+andy = User.create( 
+    username: 'Andy',
+    password: 'something'
 )
 
 jordan11 = Sneaker.create(
@@ -22,5 +27,15 @@ jordan11 = Sneaker.create(
     title: 'Win like 94',
     year: 2016
 )
+jordan1 = Sneaker.create(
+    brand: 'Jordan',
+    colorway: 'Green',
+    gender: 'Men',
+    title: 'Turbo Green',
+    year: 2016
+)
+
 
 UserSneaker.create(user: andrew, sneaker: jordan11)
+UserSneaker.create(user: andy, sneaker: jordan11)
+UserSneaker.create(user: andy, sneaker: jordan1)

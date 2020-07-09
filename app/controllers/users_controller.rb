@@ -1,17 +1,22 @@
 class UsersController < ApplicationController
+    before_action :authenticate, only: [:index]
+    # before_action :user_params, only: [:create]
 
-    def show
-        @user = User.find(params[:id])
-        
-        render json: @user, include: [:sneakers]
+    def index
+        render json: @user, except: :password_digest, include: [:sneakers]
     end
-
+    
     def create
         @user = User.create(
-            username: params[:username],
-            password: params[:password]
+            user_params
         )
-
+        
         render json: @user
+    end
+
+    private
+
+    def user_params
+        params.require(:user).permit(:username, :password)
     end
 end
