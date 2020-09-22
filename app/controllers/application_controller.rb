@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::API
     def authenticate
         header = request.headers['Authorization']
-        
+
         if !header
-            render json: {message: 'Unathorized'}, status: :forbidden
+            render json: {message: 'Unathorized'}, status: :unauthorized
         else
             token = header.split(' ')[1]
             secret = Rails.application.secrets.secret_key_base

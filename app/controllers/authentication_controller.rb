@@ -16,7 +16,11 @@ class AuthenticationController < ApplicationController
 
                 token = JWT.encode(payload, secret)
                 
-                render json: {token: token}
+                render json: {
+                    user_id: @user.id,
+                    username: @user.username,
+                    sneakers: @user.sneakers,
+                    token: token }
             end
         end
     end

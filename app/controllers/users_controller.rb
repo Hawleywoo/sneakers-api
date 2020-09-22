@@ -1,17 +1,18 @@
 class UsersController < ApplicationController
     before_action :authenticate, only: [:index]
-    # before_action :user_params, only: [:create]
 
     def index
         render json: @user, except: :password_digest, include: [:sneakers]
     end
     
     def create
-        @user = User.create(
-            user_params
-        )
+        @new_user = User.new(user_params)
         
-        render json: @user
+        if @new_user.save
+            render json: @new_user
+        else
+            render json: @new_user.errors.messages
+        end
     end
 
     private
