@@ -1,8 +1,14 @@
 class SneakersController < ApplicationController
     def index
-        if params[:brand] || params[:colorway] || params[:title] || params[:year] || params[:gender]
-            @sneaker = Sneaker.where(brand: params[:brand], colorway: params[:colorway], year: params[:year], gender: params[:gender],title: params[:title])
-            render json: @sneaker
+        if params[:brand] && params[:title]
+            @sneaker = Sneaker.where("brand LIKE ? AND title LIKE ?",   params[:brand], "%#{params[:title]}%")
+            render json: @sneaker 
+        elsif params[:brand]
+            @sneaker = Sneaker.where("brand LIKE ?",   params[:brand])
+            render json: @sneaker 
+        elsif params[:title]
+            @sneaker = Sneaker.where("title LIKE ?",  "%#{params[:title]}%")
+            render json: @sneaker 
         else
             @sneakers = Sneaker.all
             render json: @sneakers

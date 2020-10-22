@@ -23,7 +23,7 @@ def get_shoes url
             brand: sneaker["brand"],
             gender: sneaker['gender'],
             releaseDate: sneaker['releaseDate'],
-            colorway: sneaker['colorwary'],
+            colorway: sneaker['colorway'],
             retailPrice: sneaker['retailPrice'],
             title: sneaker['title'],
             year: sneaker['year'],
